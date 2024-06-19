@@ -16,4 +16,8 @@ public class PageController {
 		return "home";
 	}
 
+	@RequestMapping("/about")
+	public String showAbout() {
+		return "about";
+	}
 }
