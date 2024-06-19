@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 
 <!-- Adding ThymeLeaf and making the complete HTML as fragment -->
-<html lang="en" th:fragment="parent" xmlns:th="http://www.thymeleaf.org">
+<!-- This fragment will work like a function for calling pages, 
+They can pass arguments in the form of data/html and will receive complete HTML in return with passes contents  -->
+<html lang="en" th:fragment="parent(callingPageContent)"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +13,20 @@
 <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
 
 <!-- FlowBite components for all inheriting pages -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+	rel="stylesheet" />
 
 <title>Base Page</title>
 </head>
 <body>
 	<h1>I am the base page</h1>
-	
+
+	<!-- Content from calling Page will be added here -->
+	<div th:replace="${callingPageContent}"></div>
+
 	<!-- FlowBite JS for all inheriting pages -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
