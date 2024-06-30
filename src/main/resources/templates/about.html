@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base :: parent(~{:: #content}, ~{:: #title} ) }">
+	th:replace="~{base :: parent(~{:: #content}, ~{:: #title}, ~{:: #scripts}, ~{} ) }">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,11 @@
 		<h2>This content is passed from about -> base and got back as com
 		</h2>
 
+	</div>
+	<div id="scripts">
+		<script>
+			console.log("About script");
+		</script>
 	</div>
 </body>
 </html>
