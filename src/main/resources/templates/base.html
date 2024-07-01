@@ -3,7 +3,7 @@
 <!-- Adding ThymeLeaf and making the complete HTML as fragment -->
 <!-- This fragment will work like a function for calling pages, 
 They can pass arguments in the form of data/html and will receive complete HTML in return with passes contents  -->
-<html lang="en"
+<html lang="en" class="dark"
 	th:fragment="parent(callingPageContent,title,scripts,links)"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -24,7 +24,7 @@ They can pass arguments in the form of data/html and will receive complete HTML 
 <title th:replace="${title}">Base Page</title>
 
 </head>
-<body>
+<body class="dark:bg-gray-900 dark:text-white">
 
 	<!-- Header -->
 	<div id="header" class="header p-4">
@@ -32,7 +32,9 @@ They can pass arguments in the form of data/html and will receive complete HTML 
 	</div>
 
 	<!-- Content from calling Page will be added here -->
-	<div th:replace="${callingPageContent}"></div>
+	<div class="p-4 h-screen w-full">
+		<section th:replace="${callingPageContent}"></section>
+	</div>
 
 	<!-- FlowBite JS for all inheriting pages -->
 	<script
