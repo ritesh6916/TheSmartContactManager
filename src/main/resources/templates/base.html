@@ -31,15 +31,15 @@ They can pass arguments in the form of data/html and will receive complete HTML 
 <title th:replace="${title}">Base Page</title>
 
 </head>
-<body class="dark:bg-gray-900 dark:text-white">
+<body class="dark:bg-gray-900 bg-gray-100 dark:text-white">
 
 	<!-- Header -->
 	<div id="header" class="header p-4">
 		<ul th:replace="~{navbar :: nav-content}"></ul>
 	</div>
 
-	<!-- Content from calling Page will be added here -->
-	<div class="p-4 h-screen w-full">
+	<!-- Main Content from calling Page will be added here -->
+	<div class="p-4">
 		<section th:replace="${callingPageContent}"></section>
 	</div>
 
