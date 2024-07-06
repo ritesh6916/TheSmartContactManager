@@ -1,15 +1,22 @@
 package info.ritesh.scm.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import info.ritesh.scm.entity.Providers;
+import info.ritesh.scm.entity.User;
 import info.ritesh.scm.forms.SignupUserFormData;
+import info.ritesh.scm.services.impl.UserServiceImpl;
 
 @Controller
 public class PageController {
+
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 
 	@GetMapping("/home")
 	public String requestMethodName(Model m) {
@@ -55,9 +62,18 @@ public class PageController {
 
 		// validate the data
 
-		// save to database
+		// SignupUserFormData -> User
 
-		// redirect to login page
+		User user = User.builder().name(signupUserFormData.getName()).email(signupUserFormData.getEmail())
+				.password(signupUserFormData.getPassword()).phoneNumber(signupUserFormData.getPhone())
+				.about(signupUserFormData.getAbout()).profilePicPath("src/main/resources/static/images/telephone.png")
+				.emailVerified(false).phoneVerified(false).enabled(false).provider(Providers.SELF)
+				.providerUserId("self").build();
+		System.out.println(signupUserFormData.getPassword());
+
+		// save to database
+		userServiceImpl.savUser(user);
+
 		return "redirect:/register";
 	}
 }
