@@ -25,16 +25,18 @@
 					<h5
 						class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">SignUp
 						Here</h5>
-					<p class="font-normal text-gray-700 dark:text-gray-400">Manage
+					<p class="font-normal text-gray-500 dark:text-gray-400">Manage
 						Your content on cloud..</p>
 
-					<form action="" class="mt-5">
+					<!-- Register Form -->
+					<form data-th-action="@{/do-register}" method="post"
+						data-th-object="${defaultuserData}" class="mt-5">
 
 						<!-- name field -->
 						<div class="mb-3">
 							<label for="name"
 								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-								Name Please.. </label> <input type="text" id="name"
+								Name Please.. </label> <input type="text" th:field="*{name}" id="name"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="Enter Here.." required />
 						</div>
@@ -43,7 +45,7 @@
 						<div class="mb-3">
 							<label for="email"
 								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-								email</label> <input type="email" id="email"
+								email</label> <input type="email" id="email" th:field="*{email}"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="abc@xyz.com" required />
 						</div>
@@ -51,8 +53,8 @@
 						<!-- password field -->
 						<div class="mb-3">
 							<label for="password"
-								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-								email</label> <input type="password" id="password"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Set
+								password </label> <input type="password" id="password"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								required />
 						</div>
@@ -62,6 +64,7 @@
 							<label for="phone"
 								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 								Phone Number </label> <input type="tel" id="phone"
+								data-th-field="*{phone}"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="1234567890" required />
 						</div>
@@ -71,7 +74,7 @@
 							<label for="message"
 								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write
 								something about yourself</label>
-							<textarea id="message" rows="6"
+							<textarea id="message" rows="6" th:field="*{about}"
 								class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="Write your thoughts here..."></textarea>
 						</div>
@@ -88,11 +91,9 @@
 
 					</form>
 				</div>
-
 			</div>
-
 		</div>
-
-		<div id="scripts"></div>
+	</div>
+	<div id="scripts"></div>
 </body>
 </html>
