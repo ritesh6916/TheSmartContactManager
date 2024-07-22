@@ -2,6 +2,7 @@ package info.ritesh.scm.entity;
 
 import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -47,7 +48,7 @@ public class Contact {
 	private User user;
 
 	// A Contact can have many SocialLinks
-	@OneToMany(mappedBy = "contact", fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private ArrayList<SocialLink> socialLinks = new ArrayList<>();
 
 }

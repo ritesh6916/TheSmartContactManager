@@ -25,7 +25,7 @@ public class SocialLink {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String linkId;
+	private long linkId;
 	private String link;
 	private String title;
 
