@@ -64,12 +64,30 @@ public class PageController {
 
 		// SignupUserFormData -> User
 
-		User user = User.builder().name(signupUserFormData.getName()).email(signupUserFormData.getEmail())
-				.password(signupUserFormData.getPassword()).phoneNumber(signupUserFormData.getPhone())
-				.about(signupUserFormData.getAbout()).profilePicPath("src/main/resources/static/images/telephone.png")
-				.emailVerified(false).phoneVerified(false).enabled(false).provider(Providers.SELF)
-				.providerUserId("self").build();
-		System.out.println(signupUserFormData.getPassword());
+		/*
+		 * User user =
+		 * User.builder().name(signupUserFormData.getName()).email(signupUserFormData.
+		 * getEmail())
+		 * .password(signupUserFormData.getPassword()).phoneNumber(signupUserFormData.
+		 * getPhone()) .about(signupUserFormData.getAbout()).profilePicPath(
+		 * "src/main/resources/static/images/telephone.png")
+		 * .emailVerified(false).phoneVerified(false).enabled(false).provider(Providers.
+		 * SELF) .providerUserId("self").build();
+		 * System.out.println(signupUserFormData.getPassword());
+		 */
+
+		User user = new User();
+		user.setName(signupUserFormData.getName());
+		user.setEmail(signupUserFormData.getEmail());
+		user.setPassword(signupUserFormData.getPassword());
+		user.setPhoneNumber(signupUserFormData.getPhone());
+		user.setAbout(signupUserFormData.getAbout());
+		user.setProfilePicPath("src/main/resources/static/images/telephone.png");
+		user.setEmailVerified(false);
+		user.setPhoneVerified(false);
+		user.setEnabled(false);
+		user.setProvider(Providers.SELF);
+		user.setProviderUserId(null);
 
 		// save to database
 		userServiceImpl.savUser(user);
