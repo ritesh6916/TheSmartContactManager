@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import info.ritesh.scm.entity.Providers;
 import info.ritesh.scm.entity.User;
 import info.ritesh.scm.forms.SignupUserFormData;
+import info.ritesh.scm.helpers.Message;
+import info.ritesh.scm.helpers.MessageType;
 import info.ritesh.scm.services.impl.UserServiceImpl;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PageController {
@@ -58,7 +61,7 @@ public class PageController {
 
 	// process register form
 	@PostMapping("/do-register")
-	public String registerUser(@ModelAttribute SignupUserFormData signupUserFormData) {
+	public String registerUser(@ModelAttribute SignupUserFormData signupUserFormData, HttpSession session) {
 
 		// validate the data
 
@@ -91,6 +94,12 @@ public class PageController {
 
 		// save to database
 		userServiceImpl.savUser(user);
+
+		Message Successmessage = Message.builder().content("Registration Successful !!").type(MessageType.green)
+				.build();
+
+		// alert message
+		session.setAttribute("message", Successmessage);
 
 		return "redirect:/register";
 	}
