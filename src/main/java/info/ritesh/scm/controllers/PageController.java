@@ -3,6 +3,7 @@ package info.ritesh.scm.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import info.ritesh.scm.helpers.Message;
 import info.ritesh.scm.helpers.MessageType;
 import info.ritesh.scm.services.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class PageController {
@@ -45,7 +47,7 @@ public class PageController {
 		 * signupUserFormData.setPhone("1234567890");
 		 * signupUserFormData.setAbout("I am a software developer");
 		 */
-		model.addAttribute("defaultuserData", signupUserFormData);
+		model.addAttribute("signupUserFormData", signupUserFormData);
 		return "register";
 	}
 
@@ -61,9 +63,22 @@ public class PageController {
 
 	// process register form
 	@PostMapping("/do-register")
-	public String registerUser(@ModelAttribute SignupUserFormData signupUserFormData, HttpSession session) {
+	public String registerUser(@Valid @ModelAttribute SignupUserFormData signupUserFormData,
+			BindingResult rBindingResult, HttpSession session) {
 
 		// validate the data
+		if (rBindingResult.hasErrors()) {
+
+			/*
+			 * Message Successmessage =
+			 * Message.builder().content("Registration UnSuccessful ").type(MessageType.red)
+			 * .build();
+			 * 
+			 * // alert message session.setAttribute("message", Successmessage);
+			 */
+
+			return "register";
+		}
 
 		// SignupUserFormData -> User
 

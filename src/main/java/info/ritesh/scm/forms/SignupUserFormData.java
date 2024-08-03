@@ -1,5 +1,8 @@
 package info.ritesh.scm.forms;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,10 +20,22 @@ import lombok.ToString;
 @AllArgsConstructor
 public class SignupUserFormData {
 
+	@NotBlank(message = "Name is required")
+	@Size(min = 3, message = "Name should have atleast 3 characters")
 	private String name;
+
+	@NotBlank(message = "Email is required")
+	@Email(message = "Invalid Email")
 	private String email;
+
+	@NotBlank(message = "Password is required")
+	@Size(min = 6, message = "Password should have atleast 6 characters")
 	private String password;
+
+	@Size(min = 8, max = 13, message = "Invalid Phone Number")
 	private String phone;
+
+	@NotBlank(message = "About is required")
 	private String about;
 
 }

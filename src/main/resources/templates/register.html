@@ -33,7 +33,8 @@
 
 					<!-- Register Form -->
 					<form data-th-action="@{/do-register}" method="post"
-						data-th-object="${defaultuserData}" class="mt-5">
+						data-th-object="${signupUserFormData}" class="mt-5"
+						novalidate="novalidate">
 
 						<!-- name field -->
 						<div class="mb-3">
@@ -42,6 +43,9 @@
 								Name Please.. </label> <input type="text" th:field="*{name}" id="name"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="Enter Here.." required />
+
+							<p data-th-if="${#fields.hasErrors('name')}"
+								data-th-errors="*{name}" class="text-red-600 px-1 py-2">
 						</div>
 
 						<!-- email field -->
@@ -51,6 +55,9 @@
 								email</label> <input type="email" id="email" th:field="*{email}"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="abc@xyz.com" required />
+
+							<p data-th-if="${#fields.hasErrors('email')}"
+								data-th-errors="*{email}" class="text-red-600 px-1 py-2"></p>
 						</div>
 
 						<!-- password field -->
@@ -61,6 +68,9 @@
 								th:field="*{password}"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								required />
+
+							<p data-th-if="${#fields.hasErrors('password')}"
+								data-th-errors="*{password}" class="text-red-600 px-1 py-2"></p>
 						</div>
 
 						<!-- Phone field -->
@@ -71,6 +81,9 @@
 								data-th-field="*{phone}"
 								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="1234567890" required />
+
+							<p data-th-if="${#fields.hasErrors('phone')}"
+								data-th-errors="*{phone}" class="text-red-600 px-1 py-2"></p>
 						</div>
 
 						<!-- About field -->
@@ -81,6 +94,9 @@
 							<textarea id="message" rows="6" th:field="*{about}"
 								class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="Write your thoughts here..."></textarea>
+
+							<p data-th-if="${#fields.hasErrors('about')}"
+								data-th-errors="*{about}" class="text-red-600 px-1 py-2"></p>
 						</div>
 
 						<!-- Submit & Reset button -->
