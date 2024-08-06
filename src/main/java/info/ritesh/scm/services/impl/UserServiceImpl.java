@@ -5,10 +5,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import info.ritesh.scm.entity.User;
 import info.ritesh.scm.exceptions.ResourceNotFoundException;
+import info.ritesh.scm.helpers.AppConstants;
 import info.ritesh.scm.repositories.UserRepository;
 import info.ritesh.scm.services.UserService;
 
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	// add unimplemented methods
 
 	@Override
@@ -30,6 +35,10 @@ public class UserServiceImpl implements UserService {
 		user.setUserId(userId);
 
 		// password encoding
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+		// set user-role
+		user.setRoleList(List.of(AppConstants.ROLE_USER));
 
 		// save user to database
 		user = userRepository.save(user);
