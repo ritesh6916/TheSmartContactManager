@@ -23,6 +23,11 @@ public class PageController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
+	@GetMapping("/")
+	public String showHome() {
+		return "redirect:/home";
+	}
+
 	@GetMapping("/home")
 	public String requestMethodName(Model m) {
 
