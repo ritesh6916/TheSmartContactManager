@@ -10,13 +10,13 @@ They can pass arguments in the form of data/html and will receive complete HTML 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- TailwindCSS for all inheriting pages  -->
-<link rel="stylesheet" data-th-href="@{'/css/output.css'}">
-
 <!-- FlowBite components for all inheriting pages -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
 	rel="stylesheet" />
+
+<!-- TailwindCSS for all inheriting pages  -->
+<link rel="stylesheet" data-th-href="@{'/css/output.css'}">
 
 <!-- Font Awesome CDN -->
 <link rel="stylesheet"
@@ -34,7 +34,7 @@ They can pass arguments in the form of data/html and will receive complete HTML 
 <body class="dark:bg-gray-900 bg-gray-100 dark:text-white">
 
 	<!-- Header -->
-	<div id="header" class="header p-4">
+	<div id="header" class="header p-2">
 		<ul th:replace="~{navbar :: nav-content}"></ul>
 	</div>
 
