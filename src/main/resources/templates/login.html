@@ -12,9 +12,72 @@
 	<!-- We will pass the "content" while calling  -->
 	<div id="content">
 
+		<div class="grid grid-cols-12 mt-4">
+
+			<div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+			<div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+				<!-- Card-->
+				<div
+					class="block p-6 border-t-4 border-green-700 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-green-700 dark:hover:bg-gray-700">
+
+					<!-- Alert message Here -->
+					<div data-th-replace="message::messageBox"></div>
+
+					<h5
+						class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Login
+						Here</h5>
+					<p class="font-normal text-gray-500 dark:text-gray-400">Manage
+						Your content on cloud..</p>
+
+					<!-- Display error -->
+					<div class="text-red-600 text-center my-3" th:if="${param.error}">
+						Invalid username and password.</div>
+					<div class="text-green-600 text-center my-3"
+						th:if="${param.logout}">You have been logged out.</div>
+
+					<!-- Register Form -->
+					<form method="post" data-th-action="@{/authenticate}" class="mt-5">
+
+						<!-- UserName field -->
+						<div class="mb-3">
+							<label for="email"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+								email</label> <input name="email" type="email" id="email"
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								placeholder="abc@xyz.com" required />
+
+							<!-- <p data-th-if="${#fields.hasErrors('email')}"
+								data-th-errors="*{email}" class="text-red-600 px-1 py-2"></p> -->
+						</div>
+
+						<!-- password field -->
+						<div class="mb-3">
+							<label for="password"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter
+								password </label> <input name="password" type="password" id="password"
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								required />
+
+							<!-- <p data-th-if="${#fields.hasErrors('password')}"
+								data-th-errors="*{password}" class="text-red-600 px-1 py-2"></p> -->
+						</div>
+
+						<!-- Submit & Reset button -->
+						<div class="mb-3 flex justify-center space-x-2">
+							<button
+								class="py-2 px-3 rounded bg-green-500 hover:bg-green-900 text-white"
+								type="submit">Login</button>
+							<button
+								class="py-2 px-3 rounded bg-red-500 hover:bg-red-900 text-white"
+								type="reset">Reset</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div id="scripts">
-		
-	</div>
+
+	<div id="scripts"></div>
 </body>
 </html>
