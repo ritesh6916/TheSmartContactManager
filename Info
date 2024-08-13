@@ -1,0 +1,3 @@
+# Spring Boot + Thymeleaf + TailwindCSS
+To Regenerate TailwinCSS after changing css:
+   npx tailwindcss -i .\src\main\resources\static\css\input.css -o .\src\main\resources\static\css\output.css --watch              
