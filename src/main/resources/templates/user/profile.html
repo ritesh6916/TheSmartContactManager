@@ -7,7 +7,9 @@
 <body>
 
 	<h1>User Profile</h1>
-	<p>Welcome to Your Profile</p>
+	<p>
+		Welcome to Your Profile <span data-th-text="${loggedInUser.name}"></span>
+	</p>
 	<p>Here you can See & manage your profile</p>
 	<p>
 		Click <a href="/logout">here</a> to logout
