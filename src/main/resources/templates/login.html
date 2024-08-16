@@ -18,7 +18,7 @@
 			<div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
 				<!-- Card-->
 				<div
-					class="block p-6 border-t-4 border-green-700 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-green-700 dark:hover:bg-gray-700">
+					class="block p-6 border-t-[8px] border-green-700 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-green-700 dark:hover:bg-gray-700">
 
 					<!-- Alert message Here -->
 					<div data-th-replace="message::messageBox"></div>
@@ -35,7 +35,7 @@
 					<div class="text-green-600 text-center my-3"
 						th:if="${param.logout}">You have been logged out.</div>
 
-					<!-- Register Form -->
+					<!-- Login Form -->
 					<form method="post" data-th-action="@{/authenticate}" class="mt-5">
 
 						<!-- UserName field -->
@@ -73,6 +73,18 @@
 						</div>
 
 					</form>
+
+					<!-- login with social profiles -->
+					<div
+						class="social-buttons-container flex justify-center items-center flex-col space-y-4 mt-10">
+
+						<!-- Google login button -->
+						<a
+							class="px-3 py-2 w-1/2 font-semibold rounded-lg login-with-google-btn text-center"
+							data-th-href="@{'/oauth2/authorization/google'}"> Sign in
+							with Google</a>
+
+					</div>
 				</div>
 			</div>
 		</div>

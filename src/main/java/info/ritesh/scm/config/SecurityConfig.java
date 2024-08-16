@@ -18,6 +18,9 @@ public class SecurityConfig {
 	@Autowired
 	private SecurityCustomUserDetailsService userDetailService;
 
+	@Autowired
+	private OAuthAuthenicationSuccessHandler handler;
+
 	// configuraiton of authentication providerfor spring security
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
@@ -72,6 +75,13 @@ public class SecurityConfig {
 		httpSecurity.logout(logoutForm -> {
 			logoutForm.logoutUrl("/logout");
 			logoutForm.logoutSuccessUrl("/login?logout=true");
+		});
+
+		// Oauth2 configuration
+		httpSecurity.oauth2Login(oauth -> {
+			oauth.loginPage("/login");
+			oauth.successHandler(handler);
+			oauth.failureUrl("/login?error=true");
 		});
 
 		return httpSecurity.build();

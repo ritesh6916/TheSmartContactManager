@@ -1,3 +1,13 @@
+# Login With Google using SpringBoot and OAuth2
+ 1. add OAuth2 starter dependency
+ 2. Google -> 
+     a. client id: 419811475558-pjj47mrfvqjrkaql6t5u0340elitquem.apps.googleusercontent.com
+     b. client secret: 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
+     c. trigger URL: http://localhost:8080/oauth2/authorization/google
+     
+ 3. add OAuth2 client configuration
+ 	a. Fetch data from google account and Save it to DB
+
 # Spring Boot + Thymeleaf + TailwindCSS
 To Regenerate TailwinCSS after changing css:
    npx tailwindcss -i .\src\main\resources\static\css\input.css -o .\src\main\resources\static\css\output.css --watch              
