@@ -37,9 +37,18 @@ They can pass arguments in the form of data/html and will receive complete HTML 
 <body class="dark:bg-gray-900 bg-gray-100 dark:text-white">
 
 	<!-- Header -->
-	<div id="header" class="header p-2">
+
+	<!--  user is logged in : navbar -->
+	<div th:if="${loggedInUser}">
+		<!-- <div data-th-replace="~{user/user_navbar::user-navbar}"></div> -->
+		<ul th:replace="~{user/user_navbar::user-navbar}"></ul>
+	</div>
+
+	<div th:unless="${loggedInUser}">
 		<ul th:replace="~{navbar :: nav-content}"></ul>
 	</div>
+
+
 
 	<!-- Main Content from calling Page will be added here -->
 	<div class="p-4">

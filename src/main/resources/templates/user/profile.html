@@ -1,19 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"
+	th:replace="~{base :: parent(~{:: #content}, ~{:: #title}, ~{:: #scripts}, ~{})}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="title" data-th-text="${loggedInUser.name} +' | TSCM'">Home
+	Page</title>
+<link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+	rel="stylesheet" />
 </head>
 <body>
 
-	<h1>User Profile</h1>
-	<p>
-		Welcome to Your Profile <span data-th-text="${loggedInUser.name}"></span>
-	</p>
-	<p>Here you can See & manage your profile</p>
-	<p>
-		Click <a href="/logout">here</a> to logout
-	</p>
+	<!-- Main Content Here -->
+	<div id="content">
 
+		<!-- sidebar -->
+
+		<!-- user is logged in : sidebar -->
+
+		<div th:if="${loggedInUser}">
+			<div data-th-replace="~{user/sidebar :: sidebar}"></div>
+		</div>
+
+		<div class="sm:pl-64 pt-20" style="height: 1000px">
+			<div class="flex items-center justify-center md:pt-32 flex-col">
+				<!--  profie card -->
+				<div
+					class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full">
+					<div class="flex flex-col items-center">
+						<img data-th-src="@{${loggedInUser.profilePicPath}}"
+							src="path/to/profilePic.jpg" alt="Profile Photo"
+							class="w-44 h-44 rounded-full shadow-lg object-cover mb-4">
+						<h2 class="text-2xl font-semibold mb-2"
+							data-th-text=${loggedInUser.name}>User Name</h2>
+						<p class="text-gray-600 mb-2" data-th-text="${loggedInUser.email}">user.email@example.com</p>
+						<p class="text-gray-600 mb-2"
+							data-th-text="${loggedInUser.phoneNumber}">123-456-7890</p>
+						<p class="text-gray-600 mb-4 text-center"
+							data-th-text="${loggedInUser.about}">About the user...</p>
+						<div class="w-full flex justify-between">
+							<p class="text-sm text-gray-500">
+								Email Verified: <span class="font-medium text-gray-700"
+									id="email-verified"
+									data-th-text="${loggedInUser.emailVerified ? 'YES':'NO'}">No</span>
+							</p>
+							<p class="text-sm text-gray-500">
+								Phone Verified: <span class="font-medium text-gray-700"
+									id="phone-verified"
+									data-th-text="${loggedInUser.phoneVerified ? 'YES':'NO'}">No</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js">
+	</script>
+	<div id="scripts">
+		<script>
+				console.log("User Profile page");
+		</script>
+	</div>
 </body>
 </html>
