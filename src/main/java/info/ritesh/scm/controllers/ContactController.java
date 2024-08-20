@@ -41,6 +41,7 @@ public class ContactController {
 
 	Logger logger = LoggerFactory.getLogger(ContactController.class);
 
+	// To display the add-contact form
 	@GetMapping("/add")
 	public String addContactView(Model model) {
 		ContactForm contactForm = new ContactForm();
@@ -48,6 +49,7 @@ public class ContactController {
 		return "user/add_contact";
 	}
 
+	// Save new contact to Cloudinary (Cloud) and database
 	@PostMapping("/add")
 	public String saveContact(@Valid @ModelAttribute ContactForm contactForm, BindingResult result,
 			Authentication authentication, HttpSession session) {
