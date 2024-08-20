@@ -39,10 +39,16 @@ public class Contact {
 
 	@Column(length = 1000)
 	private String description;
+
+	@Builder.Default
 	private boolean enabled = false;
+
+	@Builder.Default
 	private boolean favorite = false;
 	private String websiteLink;
 	private String linkedInLink;
+
+	private String cloudinaryImagePublicId;
 
 	// The Contact is associated with only one User
 	@ManyToOne

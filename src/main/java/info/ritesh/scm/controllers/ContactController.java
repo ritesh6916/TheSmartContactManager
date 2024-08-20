@@ -1,5 +1,7 @@
 package info.ritesh.scm.controllers;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import info.ritesh.scm.helpers.Helper;
 import info.ritesh.scm.helpers.Message;
 import info.ritesh.scm.helpers.MessageType;
 import info.ritesh.scm.services.ContactService;
+import info.ritesh.scm.services.ImageService;
 import info.ritesh.scm.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -33,6 +36,9 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 
+	@Autowired
+	private ImageService imageService;
+
 	Logger logger = LoggerFactory.getLogger(ContactController.class);
 
 	@GetMapping("/add")
@@ -46,35 +52,44 @@ public class ContactController {
 	public String saveContact(@Valid @ModelAttribute ContactForm contactForm, BindingResult result,
 			Authentication authentication, HttpSession session) {
 
-		System.out.println(contactForm);
-
 		if (result.hasErrors()) {
 
 			result.getAllErrors().forEach(error -> logger.info(error.toString()));
+
 			session.setAttribute("message",
 					Message.builder().content("Please correct the following errors").type(MessageType.red).build());
 			return "user/add_contact";
 		}
 
+		// 1. get UserName of logged in user
 		String username = Helper.getEmailOfLoggedInUser(authentication);
 
-		// Form -> Contact
+		// form ---> contact entity
 		User user = userService.getUserByEmail(username);
-		Contact contact = new Contact();
 
+		// 2. process the contact data
+		Contact contact = new Contact();
 		contact.setName(contactForm.getName());
+		contact.setFavorite(contactForm.isFavorite());
 		contact.setEmail(contactForm.getEmail());
+		contact.setPhoneNumber(contactForm.getPhoneNumber());
 		contact.setAddress(contactForm.getAddress());
 		contact.setDescription(contactForm.getDescription());
-		contact.setFavorite(contactForm.isFavorite());
-		contact.setPhoneNumber(contactForm.getPhoneNumber());
-		contact.setWebsiteLink(contactForm.getWebsiteLink());
-		contact.setLinkedInLink(contactForm.getLinkedInLink());
 		contact.setUser(user);
+		contact.setLinkedInLink(contactForm.getLinkedInLink());
+		contact.setWebsiteLink(contactForm.getWebsiteLink());
 
-		// Save Contact
+		// 3. set the contact picture URL
+		if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
+			String filename = UUID.randomUUID().toString();
+			String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
+			contact.setPicturePath(fileURL);
+			contact.setCloudinaryImagePublicId(filename);
+
+		}
 		contactService.save(contact);
 
+		// 4. set message to be displayed on the view
 		session.setAttribute("message",
 				Message.builder().content("You have successfully added a new contact").type(MessageType.green).build());
 
