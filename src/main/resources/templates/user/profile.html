@@ -31,7 +31,8 @@
 					class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full">
 					<div class="flex flex-col items-center">
 						<img data-th-src="@{${loggedInUser.profilePicPath}}"
-							src="path/to/profilePic.jpg" alt="Profile Photo"
+							src="/TheSmartContactManager/src/main/resources/static/images/DefaultProfile.jpeg"
+							alt="Profile Photo"
 							class="w-44 h-44 rounded-full shadow-lg object-cover mb-4">
 						<h2 class="text-2xl font-semibold mb-2"
 							data-th-text=${loggedInUser.name}>User Name</h2>
@@ -58,11 +59,12 @@
 
 		</div>
 	</div>
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js">
-	</script>
+	
 	<div id="scripts">
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js">
+	</script>
+
 		<script>
 				console.log("User Profile page");
 		</script>

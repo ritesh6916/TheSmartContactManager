@@ -105,7 +105,7 @@ public class PageController {
 		user.setPassword(signupUserFormData.getPassword());
 		user.setPhoneNumber(signupUserFormData.getPhone());
 		user.setAbout(signupUserFormData.getAbout());
-		user.setProfilePicPath("src/main/resources/static/images/telephone.png");
+		user.setProfilePicPath("https://cdn.dribbble.com/users/5534/screenshots/14230133/profile_4x.jpg");
 		user.setEmailVerified(false);
 		user.setPhoneVerified(false);
 		user.setEnabled(false);
