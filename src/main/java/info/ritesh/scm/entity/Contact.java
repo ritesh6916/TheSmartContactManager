@@ -3,6 +3,8 @@ package info.ritesh.scm.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,6 +53,7 @@ public class Contact {
 	private String cloudinaryImagePublicId;
 
 	// The Contact is associated with only one User
+	@JsonIgnore
 	@ManyToOne
 	private User user;
 

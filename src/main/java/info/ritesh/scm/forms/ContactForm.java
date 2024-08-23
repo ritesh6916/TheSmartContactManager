@@ -1,7 +1,9 @@
 package info.ritesh.scm.forms;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
+import info.ritesh.scm.validators.ValidFile;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -26,7 +28,8 @@ public class ContactForm {
 	private String email;
 
 	@NotBlank(message = "Phone Number is required")
-	@Pattern(regexp = "^[0-9]{10}$", message = "Invalid Phone Number")
+	@Pattern(regexp = "^[0-9]*$", message = "Invalid Phone Number")
+	@Length(min = 10, max = 11, message = "Phone Number must be 10 digits or 11 with 0 prefix")
 	private String phoneNumber;
 
 	@NotBlank(message = "Address is required")
@@ -40,11 +43,7 @@ public class ContactForm {
 
 	private String linkedInLink;
 
-	// annotation create karenge jo file validate
-	// size
-	// resolution
-
-	// @ValidFile(message = "Invalid File")
+	@ValidFile(message = "Invalid File")
 	private MultipartFile contactImage;
 
 	private String picture;
