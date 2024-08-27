@@ -2,7 +2,6 @@ package info.ritesh.scm.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +19,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -61,9 +61,9 @@ public class User implements UserDetails {
 	@Column(length = 500)
 	private String profilePicPath;
 
-	@Getter(value = lombok.AccessLevel.NONE)
+	@Getter(value = AccessLevel.NONE)
 	@Builder.Default
-	private boolean enabled = true;
+	private boolean enabled = false;
 
 	// Because of this Builder will not ignore the default value
 	@Builder.Default
