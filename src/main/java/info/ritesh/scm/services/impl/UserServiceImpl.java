@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import info.ritesh.scm.entity.User;
 import info.ritesh.scm.exceptions.ResourceNotFoundException;
 import info.ritesh.scm.helpers.AppConstants;
+import info.ritesh.scm.helpers.Helper;
 import info.ritesh.scm.repositories.UserRepository;
+import info.ritesh.scm.services.EmailService;
 import info.ritesh.scm.services.UserService;
 
 @Service
@@ -25,10 +27,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	EmailService emailService;
+
 	// add unimplemented methods
 
 	@Override
-	public User savUser(User user) {
+	public User savUser(User user) throws Exception {
 
 		// generate unique id for user
 		String userId = UUID.randomUUID().toString();
@@ -40,9 +45,17 @@ public class UserServiceImpl implements UserService {
 		// set user-role
 		user.setRoleList(List.of(AppConstants.ROLE_USER));
 
+		String emailToken = UUID.randomUUID().toString();
+		user.setEmailToken(emailToken);
+
 		// save user to database
-		user = userRepository.save(user);
-		return user;
+		User savedUser = userRepository.save(user);
+
+		String emailLink = Helper.getLinkForEmailVerificatiton(emailToken);
+
+		emailService.sendEmail(savedUser.getEmail(), "Verify Account : Smart  Contact Manager", emailLink);
+
+		return savedUser;
 	}
 
 	@Override

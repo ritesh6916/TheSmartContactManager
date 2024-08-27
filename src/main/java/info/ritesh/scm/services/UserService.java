@@ -10,7 +10,7 @@ public interface UserService {
 	// We will treat email as userName
 
 	// CRUD operations
-	User savUser(User user);
+	User savUser(User user) throws Exception;
 
 	Optional<User> getUserById(String id);
 

@@ -36,6 +36,13 @@ public class Helper {
 			System.out.println("Getting data from local database");
 			return authentication.getName();
 		}
+	}
+
+	public static String getLinkForEmailVerificatiton(String emailToken) {
+
+		String link = "http://localhost:8080/auth/verify-email?token=" + emailToken;
+
+		return link;
 
 	}
 }

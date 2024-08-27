@@ -4,22 +4,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="title">Home Page</title>
+<title id="title">Verification Successful</title>
 <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
 	rel="stylesheet" />
 </head>
 <body>
-	<div id="content"></div>
+	<div id="content" class="text-center mt-5 md:w-1/2 mx-auto">
+		<div data-th-replace="~{message::messageBox}"></div>
 
-
+	</div>
 
 	<div id="scripts">
 		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+			src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js">
+		</script>
 		<script>
-				console.log("Home script");
+				console.log("Error in Email Token script");
 		</script>
 	</div>
 </body>

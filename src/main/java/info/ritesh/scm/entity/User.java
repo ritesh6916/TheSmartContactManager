@@ -78,6 +78,8 @@ public class User implements UserDetails {
 	private Providers provider = Providers.SELF;
 	private String providerUserId;
 
+	private String emailToken;
+
 	// A User can have many contacts
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Contact> contacts = new ArrayList<>();

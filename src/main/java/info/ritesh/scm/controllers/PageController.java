@@ -74,30 +74,8 @@ public class PageController {
 		// validate the data
 		if (rBindingResult.hasErrors()) {
 
-			/*
-			 * Message Successmessage =
-			 * Message.builder().content("Registration UnSuccessful ").type(MessageType.red)
-			 * .build();
-			 * 
-			 * // alert message session.setAttribute("message", Successmessage);
-			 */
-
 			return "register";
 		}
-
-		// SignupUserFormData -> User
-
-		/*
-		 * User user =
-		 * User.builder().name(signupUserFormData.getName()).email(signupUserFormData.
-		 * getEmail())
-		 * .password(signupUserFormData.getPassword()).phoneNumber(signupUserFormData.
-		 * getPhone()) .about(signupUserFormData.getAbout()).profilePicPath(
-		 * "src/main/resources/static/images/telephone.png")
-		 * .emailVerified(false).phoneVerified(false).enabled(false).provider(Providers.
-		 * SELF) .providerUserId("self").build();
-		 * System.out.println(signupUserFormData.getPassword());
-		 */
 
 		User user = new User();
 		user.setName(signupUserFormData.getName());
@@ -113,7 +91,17 @@ public class PageController {
 		user.setProviderUserId(null);
 
 		// save to database
-		userServiceImpl.savUser(user);
+		try {
+			// send email verification link
+			userServiceImpl.savUser(user);
+
+		} catch (Exception e) {
+
+			session.setAttribute("message",
+					Message.builder().content("Something Went Wrong !! : Verification Link was not sent.")
+							.type(MessageType.red).build());
+			return "redirect:/register";
+		}
 
 		Message Successmessage = Message.builder().content("Registration Successful !!").type(MessageType.green)
 				.build();
